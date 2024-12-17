@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/hyacinthus/mp3join"
+	"github.com/schollz/progressbar/v3"
 )
 
 func main() {
@@ -16,9 +17,12 @@ func main() {
 	outputFileName := flag.String("o", "output.mp3", "output file")
 	flag.Parse()
 
+	bar := progressbar.Default(100)
+
 	for range *n {
 		func() {
 			reader, err := os.Open(*inputFileName)
+			defer bar.Add(1)
 			defer reader.Close()
 			if err != nil {
 				fmt.Println(err)
