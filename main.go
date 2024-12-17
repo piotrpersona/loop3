@@ -17,7 +17,7 @@ func main() {
 	outputFileName := flag.String("o", "output.mp3", "output file")
 	flag.Parse()
 
-	bar := progressbar.Default(100)
+	bar := progressbar.Default(int64(*n))
 
 	for range *n {
 		func() {
